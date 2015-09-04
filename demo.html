@@ -1,0 +1,56 @@
+<html ng-app="demoApp">
+<head>
+	<title>drpx-bind-angular demo</title>
+</head>
+<body ng-controller="DemoController as vm">
+
+	Template: <input ng-model="vm.template">
+	<button ng-click="vm.template = vm.defaultTemplate">Reset</button>
+	<br><br>
+
+	<div ng-repeat="n in vm.numbers">
+		<input ng-model="hello" ng-init="hello='hello'"></input>
+		<span drpx-bind-angular="vm.template"></span>
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+	<script src="drpx-bind-angular.js"></script>
+	<script>
+		angular
+			.module('demoApp', ['drpxBindAngular'])
+			.controller('DemoController', DemoController)
+			.directive('demoFancyTick', demoFancyTickDirective);
+
+		function DemoController() {
+			this.defaultTemplate = '<demo-fancy-tick hello="{{hello}} - {{n}}"></demo-fancy-tick>';
+			this.numbers = [1,2,3,4,5];
+			this.template = this.defaultTemplate;
+		}
+
+		function demoFancyTickDirective($interval) {
+			var directive = {
+				restrict: 'E',
+				template: '{{hello}} {{tick}}',
+				scope: {
+					hello: '@'
+				},
+				link: link,
+			};
+			return directive;
+
+			function link(scope) {
+				computeTick();
+				var to = $interval(computeTick, 1000);
+				scope.$on('$destroy', function() {
+					$interval.cancel(to);
+				});
+
+				function computeTick() {
+					scope.tick = Math.floor(new Date().getTime() / 1000) % 789;
+				}
+			}
+		}
+	</script>
+</body>
+</html>

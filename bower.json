@@ -1,0 +1,27 @@
+{
+  "name": "drpx-bind-angular",
+  "version": "1.0.0",
+  "authors": [
+    "David Rodenas Pico <david.rodenas@gmail.com>"
+  ],
+  "description": "A simple angular directive that binds an angular to be compiled text",
+  "main": "drpx-bind-angular.js",
+  "keywords": [
+    "angular",
+    "bind",
+    "compile",
+    "template"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/drpicox/drpx-toggle",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": ">=1.2.28 <2.0.0"
+  }
+}
