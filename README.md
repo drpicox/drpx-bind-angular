@@ -21,7 +21,7 @@ $ npm install --save drpx-bind-angular
 add to your module the dependence:
 
 ```javascript
-    angular.module('yourModule', [ require('drpxBindAngular') ]);
+    angular.module('yourModule', [ require('drpx-bind-angular') ]);
 ```
 
 
